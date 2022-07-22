@@ -1,102 +1,68 @@
-{
-  "name": "Kochubot",
-  "description": "Telegram's sassiest group manager. Modular Telegram group management bot!",
-  "logo": "https://telegra.ph/file/1925c7a2f601539ccde7a.png",
-  "keywords": [
-    "telegram",
-    "best",
-    "group",
-    "manager",
-    "3",
-    "plugin",
-    "modular",
-    "productivity"
-  ],
-  "repository": "https://github.com/dilshan271/Rose-Bot",
-  "env": {
-    "ENV": {
-      "description": "Setting this to ANYTHING will enable env variables. But, you need to understand the code to know what to set here!",
-      "value": "ANYTHING"
-    },
-    "TOKEN": {
-      "description": "Your bot token, as a string."
-    },
-    "OWNER_ID": {
-      "description": "An integer of consisting of your owner ID",
-      "value": "20516707"
-    },
-    "OWNER_USERNAME": {
-      "description": "Your username",
-      "value": "SonOfLars"
-    },
-    "WEBHOOK": {
-      "description": "Setting this to ANYTHING will enable webhooks when in env mode messages",
-      "value": "ANYTHING"
-    },
-    "URL": {
-      "description": "The Heroku App URL similar to https://<appname>.herokuapp.com/"
-    },
-    "MESSAGE_DUMP": {
-      "description": "optional: a chat where your replied saved messages are stored, to stop people deleting their old",
-      "required": false
-    },
-    "SUDO_USERS": {
-      "description": "A space separated list of user_ids which should be considered sudo users",
-      "value": "254318997 18673980 83489514"
-    },
-    "SUPPORT_USERS": {
-      "description": "A space separated list of user_ids which should be considered support users (can gban/ungban, nothing else)",
-      "value": "254318997 18673980 83489514"
-    },
-    "WHITELIST_USERS": {
-      "description": "A space separated list of user_ids which should be considered whitelisted - they can't be banned.",
-      "value": "254318997 18673980 83489514"
-    },
-    "DONATION_LINK": {
-      "description": "Optional: link where you would like to receive donations.",
-      "value": "https://www.paypal.me/PaulSonOfLars"
-    },
-    "PORT": {
-      "description": "Port to use for your webhooks",
-      "value": "8443"
-    },
-    "DEL_CMDS": {
-      "description": "Whether to delete commands from users which don't have rights to use that command",
-      "value": "True"
-    },
-    "STRICT_GBAN": {
-      "description": "Enforce gbans across new groups as well as old groups. When a gbanned user talks, he will be banned.",
-      "value": "True"
-    },
-    "ALLOW_EXCL": {
-      "description": "Whether to allow using exclamation marks ! for commands as well as /.",
-      "value": "True"
-    },
-    "BAN_STICKER": {
-      "description": "Which sticker to use when banning people. Use https://telegram.dog/ShowJsonBot to get the file_id",
-      "value": "CAADBQADfQADv7rGI0wxx1ORU7UzAg",
-      "required": false
-    },
-    "BMERNU_SCUT_SRELFTI": {
-      "description": "please set this value as 0",
-      "value": "1",
-      "required": false
-    }
-  },
-  "addons": [
-    {
-      "plan": "heroku-postgresql",
-      "options": {
-        "version": "12"
-      }
-    }
-  ],
-  "stack": "heroku-20",
-  "buildpacks": [],
-  "formation": {
-    "web": {
-      "quantity": 1,
-      "size": "free"
-    }
-  }
-}
+
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+mode: rule
+log-level: silent
+allow-lan: true
+external-controller: 0.0.0.0:9090
+bind-address: "*"
+ipv6: false
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: redir-host
+  listen: 0.0.0.0:7894
+  fallback-filter:
+    geoip: false
+    ipcidr:
+    - 240.0.0.0/4
+  nameserver:
+    - https://puredns.org/dns-query
+    - tls://puredns.org:853
+  fallback:
+    - tcp://108.137.44.39
+    - tcp://108.137.44.9
+    - 108.137.44.39
+    - 108.137.44.9
+tun:
+  enable: true
+  stack: system 
+  macOS-auto-route: true
+  macOS-auto-detect-interface: true
+  dns-hijack:
+    - tcp://108.137.44.39:53
+experimental:
+  interface-name: en0
+
+proxies:
+ - {name: 🇱🇰 Server 1 🇱🇰, server: udmpaidv2ray.tk, port: 443, udp: true, type: trojan, password: 12c1c92e-6edf-4114-b58e-d4cfc78c7a32, sni: static.whatsapp.net, skip-cert-verify: true}
+ - {name: 🇱🇰 Server 2 🇱🇰, server: udmpaidv2ray.tk, port: 443, udp: true, type: trojan, password: e2a2c095-7677-4c6c-b9db-66aaf94e11eb, sni: static.whatsapp.net, skip-cert-verify: true}
+ - {name: 🇱🇰 Server 3 🇱🇰, server: udmpaidv2ray.tk, port: 443, udp: true, type: trojan, password: 257fc0a5-3061-4799-a33e-09e4bf1f264e, sni: static.whatsapp.net, skip-cert-verify: true}
+
+proxy-groups:
+  - name: 🌀UDM-CONFIGURATION🌀
+    type: select
+    proxies:
+      - "Best Ping ✓"
+      - "LOAD BALANCE  ✓"
+  - name: Best Ping ✓
+    type: url-test
+    proxies:
+      - "🇱🇰 Server 1 🇱🇰"
+      - "🇱🇰 Server 2 🇱🇰"
+      - "🇱🇰 Server 3 🇱🇰"
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+  - name: LOAD BALANCE  ✓
+    type: load-balance
+    proxies:
+      - "🇱🇰 Server 1 🇱🇰"
+      - "🇱🇰 Server 2 🇱🇰"
+      - "🇱🇰 Server 3 🇱🇰"
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+rules:
+  - MATCH, 🌀UDM-CONFIGURATION🌀
+
