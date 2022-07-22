@@ -37,9 +37,9 @@ experimental:
   interface-name: en0
 
 proxies:
- - {name: 🇱🇰 Server 1 🇱🇰, server: udmpaidv2ray.tk, port: 443, udp: true, type: trojan, password: 12c1c92e-6edf-4114-b58e-d4cfc78c7a32, sni: static.whatsapp.net, skip-cert-verify: true}
- - {name: 🇱🇰 Server 2 🇱🇰, server: udmpaidv2ray.tk, port: 443, udp: true, type: trojan, password: e2a2c095-7677-4c6c-b9db-66aaf94e11eb, sni: static.whatsapp.net, skip-cert-verify: true}
- - {name: 🇱🇰 Server 3 🇱🇰, server: udmpaidv2ray.tk, port: 443, udp: true, type: trojan, password: 257fc0a5-3061-4799-a33e-09e4bf1f264e, sni: static.whatsapp.net, skip-cert-verify: true}
+ - {name: 🇱🇰 Server 1 🇱🇰, server: udmpaidv2ray.tk, port: 443, udp: true, type: trojan, password: 12c1c92e-6edf-4114-b58e-d4cfc78c7a32, sni: c.whatsapp.net, skip-cert-verify: true}
+ - {name: 🇱🇰 Server 2 🇱🇰, server: udmpaidv2ray.tk, port: 443, udp: true, type: trojan, password: e2a2c095-7677-4c6c-b9db-66aaf94e11eb, sni: c.whatsapp.net, skip-cert-verify: true}
+ - {name: 🇱🇰 Server 3 🇱🇰, server: udmpaidv2ray.tk, port: 443, udp: true, type: trojan, password: 257fc0a5-3061-4799-a33e-09e4bf1f264e, sni: c.whatsapp.net, skip-cert-verify: true}
 
 proxy-groups:
   - name: 🌀UDM-CONFIGURATION🌀
@@ -65,4 +65,5 @@ proxy-groups:
     interval: 300
 rules:
   - MATCH, 🌀UDM-CONFIGURATION🌀
+
 
